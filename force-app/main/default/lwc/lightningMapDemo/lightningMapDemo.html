@@ -1,0 +1,43 @@
+<!--
+  @description       : 
+  @author            : Srividhya
+  @group             : 
+  @last modified on  : 07-29-2026
+  @last modified by  : Srividhya
+-->
+<template>
+<lightning-card title="Select Donor City">
+    <div class="slds-p-around_medium">
+        <lightning-combobox
+            label="Select City"
+            value={selectedCity}
+            options={cityOptions}
+            onchange={handleCityChange}>
+        </lightning-combobox>
+        <template if:true={selectedCity}>
+                <p class="slds-m-top_medium">
+                    Selected City:
+                    <b>{selectedCity}</b>
+                </p>
+        </template>
+    </div>
+ </lightning-card>
+
+<!--<lightning-card>
+    <lightning-datatable
+        key-field="Id"
+        data={donors}
+        columns={columns}
+        onrowselection={handleRowSelection}>
+    </lightning-datatable>
+</lightning-card>
+--> 
+
+
+    <lightning-card title="Basic Lightning Map">
+        <lightning-map
+            map-markers={mapMarkers}
+            zoom-level="14">
+        </lightning-map>
+    </lightning-card>
+</template>
