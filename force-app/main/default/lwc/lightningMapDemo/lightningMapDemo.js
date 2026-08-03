@@ -1,12 +1,12 @@
 import { LightningElement,wire } from 'lwc';
-
+import DonorDetailModal from 'c/donorDetailModal';
 import getUniqueCities 
 from '@salesforce/apex/DonorMapController.getUniqueCities';
 import getDonorsByCity 
 from '@salesforce/apex/DonorMapController.getDonorsByCity';
 export default class LightningMapDemo extends LightningElement {
 
- // Stores the selected city
+    // Stores the selected city
     selectedCity;
 
     // Stores combobox options
@@ -39,17 +39,14 @@ export default class LightningMapDemo extends LightningElement {
                 };
             });
 
-            console.log('City Options:', this.cityOptions);
-
         } else if (error) {
 
             console.error('Error fetching cities:', error);
 
         }
     }
- // Runs when a city is selected
+    // Runs when a city is selected
     handleCityChange(event) {
-
         this.selectedCity = event.detail.value;
         getDonorsByCity({ city: this.selectedCity })
             .then(result => {
@@ -58,6 +55,7 @@ export default class LightningMapDemo extends LightningElement {
                 // Display on map
             this.mapMarkers = result.map(donor => {
                 return {
+                     value: donor.Id, // added value property to identify the marker, for Modal
                     location: {
                         Street: donor.Street__c,
                         City: donor.City__c,
@@ -79,5 +77,23 @@ export default class LightningMapDemo extends LightningElement {
             });
 
     }
+
+    async handleMarkerSelect(event) {
+
+    const donorId = event.detail.selectedMarkerValue;
+
+    const donor = this.donors.find(
+        d => d.Id === donorId
+    );
+
+    await DonorDetailModal.open({
+
+        size: 'medium',
+
+        donor: donor
+
+    });
+
+}
      
 }

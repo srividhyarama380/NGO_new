@@ -1,0 +1,48 @@
+<!--
+  @description       : 
+  @author            : Srividhya
+  @group             : 
+  @last modified on  : 07-31-2026
+  @last modified by  : Srividhya
+-->
+<template>
+
+    <lightning-modal-header label="Donor Details">
+    </lightning-modal-header>
+
+    <lightning-modal-body>
+        
+        <template if:true={donor}>
+
+    <p><b>Name:</b> {donor.Name}</p>
+
+    <p><b>Email:</b> {donor.Email__c}</p>
+
+    <p><b>Phone:</b> {donor.Phone__c}</p>
+
+    <p><b>Street:</b> {donor.Street__c}</p>
+
+    <p><b>City:</b> {donor.City__c}</p>
+
+    <p><b>State:</b> {donor.State__c}</p>
+
+    <p><b>Pincode:</b> {donor.Pincode__c}</p>
+
+</template>
+ <template if:false={donor}>
+
+            <p>No donor data received</p>
+
+        </template>
+    </lightning-modal-body>
+
+    <lightning-modal-footer>
+
+        <lightning-button
+            label="Close"
+            onclick={handleClose}>
+        </lightning-button>
+
+    </lightning-modal-footer>
+
+</template>
