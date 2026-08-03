@@ -2,7 +2,7 @@
   @description       : 
   @author            : Srividhya
   @group             : 
-  @last modified on  : 07-29-2026
+  @last modified on  : 07-30-2026
   @last modified by  : Srividhya
 -->
 <template>
@@ -28,7 +28,6 @@
         key-field="Id"
         data={donors}
         columns={columns}
-        onrowselection={handleRowSelection}>
     </lightning-datatable>
 </lightning-card>
 --> 
@@ -37,7 +36,8 @@
     <lightning-card title="Basic Lightning Map">
         <lightning-map
             map-markers={mapMarkers}
-            zoom-level="14">
+            zoom-level="14"
+            onmarkerselect={handleMarkerSelect}>
         </lightning-map>
     </lightning-card>
 </template>
